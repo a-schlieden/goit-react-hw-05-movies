@@ -1,32 +1,47 @@
 import { useEffect, useState } from "react"
-import fetchTrend from '../../api/FilmsApi';
+import { Link } from 'react-router-dom';
+
+import * as filmsFetch from '../../api/Fetch';
+// import * as filmsFetch from '../../api/FilmsApi';
 
 const Home = () => {
 
-    const [film, setFilm] = useState([]);
+    const [films, setFilms] = useState([]);
+
+
+    // useEffect(() => {
+    //     filmsFetch.default
+    //         .fetchMoviesTrend()
+    //         .then(movies => {
+    //             setFilms(movies)
+    //         })
+    //         .catch(errorFetch => {
+    //             console.log(errorFetch)
+    //         });
+
+    // }, [])
+
 
     useEffect(() => {
-        fetchTrend
-            .fetchMoviesTrend()
-            .then(imagesFromBack => {
-                // if (imagesFromBack.hits.length > 0) {
-                //    setImages((prevState) => [...prevState, ...imagesFromBack.hits]);
-                //    setStatus('resolved');
-                // } else {
-                //    return setStatus('noImg');
-                // }
-                console.log('imagesFromBack ', imagesFromBack.results)
-            })
-            .catch(errorFetch => {
-                // setError(errorFetch);
-                // setStatus('rejecktedError');
-            });
+        filmsFetch.fetchTrendingMovies().then(result => { setFilms(result.results) });
+    }, []);
 
-    }, [])
+
+
+
     return (
-        <div>
-            <p>sfsgdgdg</p>
-        </div>
+        <>
+            {/* {films && ( */}
+            <ul>
+                {films.map(film => (
+                    <li key={film.id}>
+                        <Link to={`movies/${film.id}`}>{film.original_title}</Link>
+                        {/* <p>{film.id}</p> */}
+                    </li>
+                ))}
+            </ul>
+            {/* // )} */}
+        </>
     )
 }
 

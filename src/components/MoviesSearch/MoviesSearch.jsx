@@ -1,7 +1,6 @@
-
 import { useState } from "react";
 import PropTypes from 'prop-types';
-import style from './Movies.module.css';
+import style from './MoviesSearch.module.css';
 import { ReactComponent as Search } from '../../icons/search.svg';
 
 const Movies = ({ onSubmitForm }) => {
@@ -31,7 +30,7 @@ const Movies = ({ onSubmitForm }) => {
                     type="text"
                     autoComplete="off"
                     autoFocus
-                    placeholder="Search images and photos"
+                    placeholder="Search moviess"
                     value={searchInput}
                     onChange={onDataChange}
                 />
