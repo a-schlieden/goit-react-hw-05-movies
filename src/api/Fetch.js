@@ -1,5 +1,5 @@
 const KEY = '0e67fb79d752f59394a3aa358d9abf8d';
-const URL = 'https://api.themoviedb.org/3/';
+export const URL = 'https://api.themoviedb.org/3/';
 
 async function fetchWithErrorHandling(url = '') {
     const response = await fetch(url);

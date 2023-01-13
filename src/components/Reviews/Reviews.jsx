@@ -41,7 +41,7 @@ const Reviews = () => {
                 </ul>
             )}
             {status === 'noInfo' && (<p>No Info Reviews !!!!</p>)}
-            {status === 'pendingLoad' && (<p>No Info Reviews !!!!</p>)}
+            {status === 'pendingLoad' && (<p>LOADDDD:::::::</p>)}
 
 
 

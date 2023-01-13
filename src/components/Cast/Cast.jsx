@@ -7,12 +7,12 @@ import * as filmsFetch from '../../api/Fetch';
 const Cast = () => {
 
     // const [FilmDetails, setFilmDetails] = useState([]);
-    // const [status, setStatus] = useState('idleNothing');
+    const [status, setStatus] = useState('idleNothing');
     const { movieId } = useParams()
 
     useEffect(() => {
 
-
+        setStatus('pendingLoad');
 
         filmsFetch.fetchCastMovie(movieId).then(movie => {
             console.log(movie)
@@ -28,7 +28,7 @@ const Cast = () => {
             <img src="" alt="Foto" />
             <p>Name</p>
             <p>Character:</p>
-
+            {status === 'pendingLoad' && (<p>LOAD......</p>)}
         </div>
 
     )
