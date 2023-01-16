@@ -1,18 +1,21 @@
 import { useState, useEffect, Suspense } from "react";
-import { useParams, Outlet } from "react-router-dom";
+import { useParams, Outlet, useLocation } from "react-router-dom";
 import PropTypes from 'prop-types';
-// import style from './MovieDetails.module.css';
+import { Loader } from 'components/Loader/Loader';
 import * as filmsFetch from '../../api/Fetch';
 import MovieMainInfo from "components/MovieMainInfo/MovieMainInfo";
 import AdditionalLinks from "components/AdditionalLinks/AdditionalLinks";
 import BackLink from "components/BackLink/BackLink";
-// import * as filmsFetch from '../../api/FilmsApi';
+
+import style from './MovieDetails.module.css';
 
 
 const MovieDetails = () => {
     const [FilmDetails, setFilmDetails] = useState([]);
     const [status, setStatus] = useState('idleNothing');
     const { movieId } = useParams()
+    const location = useLocation();
+
 
     useEffect(() => {
 
@@ -25,24 +28,26 @@ const MovieDetails = () => {
     }, [movieId]);
 
 
+    const LinkTo = location.state
 
 
     return (
-        <div>
+        <div className={style.wrapp}>
 
-            {status === 'pendingLoad' && <h2>LOAD.....</h2>}
+            {status === 'pendingLoad' && <Loader />}
 
             {status === 'resolved' &&
                 <>
-                    <BackLink />
+                    <BackLink link={LinkTo} />
 
                     <MovieMainInfo film={FilmDetails} />
 
                     <AdditionalLinks />
+
                 </>
             }
 
-            <Suspense fallback={<h2>LOAD...MORE..</h2>}>
+            <Suspense fallback={<Loader />}>
                 <Outlet />
             </Suspense>
 

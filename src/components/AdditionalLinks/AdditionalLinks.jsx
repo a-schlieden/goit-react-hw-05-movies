@@ -1,23 +1,29 @@
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 // import style from './Header.module.css';
 
-const LinkItems = [
-    { to: 'cast', title: 'Cast' },
-    { to: 'reviews', title: 'Review' },
-]
-
 const AdditionalLinks = () => {
+    const location = useLocation().state?.from ?? '/';
+
     return (
-        <ul>
-            {LinkItems.map(item =>
-                <li key={item.title}>
-                    <NavLink
-                        // className={(isActive) => isActive ? style.navActive : null}
-                        to={item.to}>
-                        {item.title}
-                    </NavLink>
-                </li>)}
-        </ul>
+        <>
+            <hr />
+            <p>Additional Information</p>
+            <ul>
+                <li>
+                    <Link to="cast" state={{ from: location }}>
+                        Cast
+                    </Link>
+                </li>
+                <li>
+                    <Link to="reviews" state={{ from: location }}>
+                        Review
+                    </Link>
+                </li>
+
+            </ul>
+            <hr />
+        </>
     )
 }
 

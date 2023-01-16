@@ -1,12 +1,16 @@
-// import { NavLink } from "react-router-dom";
-// import style from './Header.module.css';
+
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { Loader } from 'components/Loader/Loader';
 import * as filmsFetch from '../../api/Fetch';
+import noPosterCUT from '../../images/no-img.png';
+import style from './Cast.module.css';
+
+
 
 const Cast = () => {
 
-    // const [FilmDetails, setFilmDetails] = useState([]);
+    const [Cast, setCast] = useState([]);
     const [status, setStatus] = useState('idleNothing');
     const { movieId } = useParams()
 
@@ -15,20 +19,28 @@ const Cast = () => {
         setStatus('pendingLoad');
 
         filmsFetch.fetchCastMovie(movieId).then(movie => {
-            console.log(movie)
+            console.log(movie.cast)
+            setCast(movie.cast)
+            setStatus('resolved');
         });
     }, [movieId]);
 
-
-
-
     return (
 
-        <div>Cast Texte
-            <img src="" alt="Foto" />
-            <p>Name</p>
-            <p>Character:</p>
-            {status === 'pendingLoad' && (<p>LOAD......</p>)}
+        <div>
+            {status === 'resolved' && (
+                <ul>
+                    {Cast.map(item => {
+                        return <li key={item.id}>
+                            <img className={style.imageCast} src={item.profile_path ? filmsFetch.IMG_URL + item.profile_path : noPosterCUT} alt="Foto" />
+                            <p>Name: {item.name}</p>
+                            <p>Character: {item.character}</p>
+                        </li>;
+                    })}
+                </ul>
+            )}
+
+            {status === 'pendingLoad' && <Loader />}
         </div>
 
     )

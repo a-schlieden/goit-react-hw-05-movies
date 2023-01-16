@@ -1,0 +1,14 @@
+.infoWrap{
+    display: flex;
+}
+.imageWrap{
+    padding-right: 20px;
+}
+.title{
+    display: flex;
+    font-size: 25px;
+    font-weight: bold;
+}
+.score{
+    display: flex;
+}

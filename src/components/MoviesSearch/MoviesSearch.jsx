@@ -1,10 +1,20 @@
 import { useState } from "react";
 import PropTypes from 'prop-types';
+import * as filmsFetch from '../../api/Fetch';
 import style from './MoviesSearch.module.css';
 import { ReactComponent as Search } from '../../icons/search.svg';
+import { useSearchParams } from 'react-router-dom';
+//import { Link, useSearchParams, useLocation } from 'react-router-dom';
+import FilmsList from "components/FilmsList/FilmsList";
 
-const Movies = ({ onSubmitForm }) => {
+const Movies = () => {
+    // const location = useLocation();
     const [searchInput, setSearchInput] = useState('');
+    const [films, setFilms] = useState([]);
+    const [SearchParams, setSearchParams] = useSearchParams();
+    const filter = SearchParams.get('query') ?? ''
+    console.log(filter)
+
 
     const onDataChange = event => {
         setSearchInput(event.currentTarget.value.toLowerCase());
@@ -15,7 +25,9 @@ const Movies = ({ onSubmitForm }) => {
         if (searchInput.trim() === '') {
             return;
         }
-        onSubmitForm(searchInput);
+        // onSubmitForm(searchInput);
+        filmsFetch.fetchSearchMovies(searchInput).then(result => { setFilms(result.results) });
+        setSearchParams({ query: searchInput })
     };
 
     return (
@@ -35,6 +47,22 @@ const Movies = ({ onSubmitForm }) => {
                     onChange={onDataChange}
                 />
             </form>
+
+            <div>
+
+                {/* //   {films && ( */}
+                {/* <ul>
+                    {films.map(film => (
+                        <li key={film.id}>
+                            <Link to={`${film.id}`} state={{ from: location }}>{film.original_title}</Link>
+                        </li>
+                    ))}
+                </ul> */}
+                {/* //     )} */}
+                <FilmsList filmsArray={films} />
+
+            </div>
+
         </div>
     )
 }

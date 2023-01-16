@@ -1,7 +1,7 @@
-// import { NavLink } from "react-router-dom";
-// import style from './Header.module.css';
+
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { Loader } from 'components/Loader/Loader';
 import * as filmsFetch from '../../api/Fetch';
 
 
@@ -16,7 +16,6 @@ const Reviews = () => {
 
         filmsFetch.fetchReviewMovie(movieId).then(movie => {
             if (movie.results.length > 0) {
-                console.log(movie)
                 setReviews(movie.results)
                 setStatus('resolved');
             }
@@ -34,27 +33,16 @@ const Reviews = () => {
                 <ul>
                     {Reviews.map(review => {
                         return <li key={review.id}>
-                            <p>Autor: {review.author}</p>
-                            <p>Autor: {review.content}</p>
+                            <p><b>Autor: {review.author}</b></p>
+                            <p>{review.content}</p>
                         </li>;
                     })}
                 </ul>
             )}
+
             {status === 'noInfo' && (<p>No Info Reviews !!!!</p>)}
-            {status === 'pendingLoad' && (<p>LOADDDD:::::::</p>)}
 
-
-
-            {/* {Reviews.length > 0 ? (
-                <ul>
-                    {Reviews.map(review => {
-                        return <li key={review.id}>
-                            <p>Autor: {review.author}</p>
-                            <p>Autor: {review.content}</p>
-                        </li>;
-                    })}
-                </ul>
-            ) : (<p>No Info Reviews !!!!</p>)} */}
+            {status === 'pendingLoad' && <Loader />}
 
         </div>
 

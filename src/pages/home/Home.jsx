@@ -1,26 +1,12 @@
 import { useEffect, useState } from "react"
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 import * as filmsFetch from '../../api/Fetch';
 // import * as filmsFetch from '../../api/FilmsApi';
 
 const Home = () => {
-
+    const location = useLocation();
     const [films, setFilms] = useState([]);
-
-
-    // useEffect(() => {
-    //     filmsFetch.default
-    //         .fetchMoviesTrend()
-    //         .then(movies => {
-    //             setFilms(movies)
-    //         })
-    //         .catch(errorFetch => {
-    //             console.log(errorFetch)
-    //         });
-
-    // }, [])
-
 
     useEffect(() => {
         filmsFetch.fetchTrendingMovies().then(result => { setFilms(result.results) });
@@ -35,8 +21,7 @@ const Home = () => {
             <ul>
                 {films.map(film => (
                     <li key={film.id}>
-                        <Link to={`movies/${film.id}`}>{film.original_title}</Link>
-                        {/* <p>{film.id}</p> */}
+                        <Link to={`movies/${film.id}`} state={{ from: location }}>{film.original_title}</Link>
                     </li>
                 ))}
             </ul>
