@@ -1,31 +1,29 @@
-
 import PropTypes from 'prop-types';
-import style from './MovieMainInfo.module.css';
+import { ReactComponent as Search } from '../../icons/search.svg';
+import style from './SearchForm.module.css';
 
-const SearchForm = ({ film }) => {
+const SearchForm = ({ onChange, value }) => {
+  return (
+    <form className={style.SearchForm}>
+      <button type="submit" className={style.SearchFormButton}>
+        <Search width="20" />
+      </button>
 
-    return (
-        <form className={style.SearchForm} onSubmit={onFormSubmit}>
-            <button type="submit" className={style.SearchFormButton}>
-                <Search width="20" />
-            </button>
+      <input
+        className={style.SearchFormInput}
+        type="text"
+        autoComplete="off"
+        autoFocus
+        value={value}
+        placeholder="Search moviess"
+        onChange={event => onChange(event.target.value)}
+      />
+    </form>
+  );
+};
 
-            <input
-                className={style.SearchFormInput}
-                type="text"
-                autoComplete="off"
-                autoFocus
-                placeholder="Search moviess"
-                value={searchInput}
-                onChange={onDataChange}
-            />
-        </form>
-    )
-}
-
-export default MovieMainInfo
-
+export default SearchForm;
 
 SearchForm.propTypes = {
-    onSubmitForm: PropTypes.func,
+  onSubmitForm: PropTypes.func,
 };
