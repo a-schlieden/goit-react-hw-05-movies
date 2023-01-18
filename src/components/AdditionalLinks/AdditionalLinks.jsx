@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-// import style from './Header.module.css';
 
 const AdditionalLinks = () => {
     const location = useLocation().state?.from ?? '/';

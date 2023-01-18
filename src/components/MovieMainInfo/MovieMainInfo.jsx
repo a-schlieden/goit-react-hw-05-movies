@@ -39,5 +39,5 @@ export default MovieMainInfo
 
 
 MovieMainInfo.propTypes = {
-    onSubmitForm: PropTypes.func,
+    film: PropTypes.object.isRequired,
 };

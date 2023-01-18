@@ -3,9 +3,6 @@ import { Link, useLocation } from 'react-router-dom';
 
 const FilmsList = ({ filmsArray, sublink }) => {
   const location = useLocation();
-  // const [searchInput, setSearchInput] = useState('');
-  // const [films, setFilms] = useState([]);
-  // const [SearchParams, setSearchParams] = useSearchParams();
 
   return (
     <div>
@@ -30,5 +27,6 @@ const FilmsList = ({ filmsArray, sublink }) => {
 export default FilmsList;
 
 FilmsList.propTypes = {
-  onSubmitForm: PropTypes.func,
+  filmsArray: PropTypes.array.isRequired,
+  sublink: PropTypes.string,
 };

@@ -1,6 +1,5 @@
 import { useState, useEffect, Suspense } from "react";
 import { useParams, Outlet, useLocation } from "react-router-dom";
-import PropTypes from 'prop-types';
 import { Loader } from 'components/Loader/Loader';
 import * as filmsFetch from '../../api/Fetch';
 import MovieMainInfo from "components/MovieMainInfo/MovieMainInfo";
@@ -58,6 +57,3 @@ const MovieDetails = () => {
 export default MovieDetails
 
 
-MovieDetails.propTypes = {
-    onSubmitForm: PropTypes.func,
-};

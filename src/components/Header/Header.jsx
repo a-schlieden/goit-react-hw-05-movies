@@ -14,7 +14,7 @@ const Header = () => {
                     {Items.map(item =>
                         <li key={item.title}>
                             <NavLink
-                                className={(isActive) => isActive ? style.navActive : null}
+                                className={({ isActive }) => isActive ? style.navActive : undefined}
                                 to={item.to}>
                                 {item.title}
                             </NavLink>

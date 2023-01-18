@@ -1,5 +1,6 @@
 .nav{
-    background-color: #333;
+    /* background-color: #333; */
+    box-shadow: 0px 3px 2px rgb(185, 183, 183);
     color: white;
     display: flex;
     justify-content: space-between;
@@ -16,19 +17,20 @@
     gap: 1rem;
 }
 .nav a{
-    color: pink;
+   
     text-decoration: none;
     display: block;
     padding-top: 20px;
     padding-bottom: 25px;
 }
 .nav li{
+    /* color: pink; */
     height: 100%;
 }
 .navActive{
-    background-color: #555;
+  color: rgb(26, 230, 219);
 }
 
 .nav li:hover{
-    background-color: #777;
+    /* color: rgb(187, 22, 22); */
 }

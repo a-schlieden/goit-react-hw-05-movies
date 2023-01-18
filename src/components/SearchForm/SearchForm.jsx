@@ -1,25 +1,9 @@
 import PropTypes from 'prop-types';
 import { ReactComponent as Search } from '../../icons/search.svg';
 import style from './SearchForm.module.css';
-//import { useState } from "react";
+
 
 const SearchForm = ({ onSubmitForm }) => {
-
-
-  // const [searchInput, setSearchInput] = useState('');
-
-  // const onDataChange = event => {
-  //   setSearchInput(event.currentTarget.value.toLowerCase());
-  // };
-
-  // const onFormSubmit = event => {
-  //   event.preventDefault();
-  //   if (searchInput.trim() === '') {
-  //     return;
-  //   }
-  //   onSubmitForm(searchInput);
-  // };
-
 
   return (
     <form className={style.SearchForm} onSubmit={onSubmitForm}>
@@ -34,10 +18,6 @@ const SearchForm = ({ onSubmitForm }) => {
         autoFocus
         placeholder="Search movies"
         name='searchfield'
-      // onChange={event => onChange(event.target.value)}
-      // value={value}
-      // onChange={onDataChange}
-
       />
     </form>
   );
@@ -46,5 +26,5 @@ const SearchForm = ({ onSubmitForm }) => {
 export default SearchForm;
 
 SearchForm.propTypes = {
-  onSubmitForm: PropTypes.func,
+  onSubmitForm: PropTypes.func.isRequired,
 };

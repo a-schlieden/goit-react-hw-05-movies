@@ -6,6 +6,8 @@
   background-color: #fff;
   border-radius: 3px;
   overflow: hidden;
+  margin-top: 10px;
+  border: 1px solid grey;
 }
 
 .SearchFormButton {
