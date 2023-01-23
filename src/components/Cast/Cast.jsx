@@ -14,8 +14,13 @@ const Cast = () => {
     setStatus('pendingLoad');
 
     filmsFetch.fetchCastMovie(movieId).then(movie => {
-      setCast(movie.cast);
-      setStatus('resolved');
+      if (movie.cast.length > 0) {
+        setCast(movie.cast);
+        setStatus('resolved');
+      }
+      else {
+        return setStatus('noInfo');
+      }
     });
   }, [movieId]);
 
@@ -42,7 +47,7 @@ const Cast = () => {
           })}
         </ul>
       )}
-
+      {status === 'noInfo' && (<p>Sorry No Info Cast</p>)}
       {status === 'pendingLoad' && <Loader />}
     </div>
   );
